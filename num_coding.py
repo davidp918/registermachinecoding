@@ -57,7 +57,8 @@ def dec_instr(code):
         res.append(j)
 
     else:
-        res.append((i - 1) // 2)
+        # res.append((i - 1) // 2)
+        res.append(i)
         (k, l) = dec_pair_alt(j)
         res.append(k)
         res.append(l)
@@ -99,14 +100,14 @@ def dec_rm(code):
 
 
 def print_rm(rm):
-    for instr in rm:
-        if len(instr) == 0:
-            print("HALT")
+    for i, instr in enumerate(rm):
+        if len(instr) == 1:
+            print(f"L{i}: HALT")
         elif len(instr) == 2:
-            print("R" + str(instr[0]) + " + -> R" + str(instr[1]))
+            print(f"L{i}: R" + str(instr[0]) + "+ -> L" + str(instr[1]))
         else:
-            print("R" + str(instr[0]) + " - -> R" + str(instr[1])
-                  + ", " + str(instr[2]))
+            print(f"L{i}: R" + str(instr[0]) + "- -> L" + str(instr[1])
+                  + ", L" + str(instr[2]))
 
 
 p1 = (0, 0)
@@ -125,4 +126,4 @@ print(dec_pair(8197))
 
 print(enc_list([94, 0, 1, 10]))
 
-print(dec_instr(1))
+print_rm([[1, 3, 1], [0], [0, 0], [1, 0, 1]])
