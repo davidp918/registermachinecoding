@@ -11,7 +11,7 @@ def dec_pair(code):
     while code % 2 == 0:
         code = code // 2
         x += 1
-    y = (code - 1) / 2
+    y = (code - 1) // 2
 
     return(x, y)
 
@@ -48,7 +48,7 @@ def dec_instr(code):
     res = []
 
     if code == 0:
-        return res
+        return [0]
 
     (i, j) = dec_pair(code)
 
@@ -57,8 +57,7 @@ def dec_instr(code):
         res.append(j)
 
     else:
-        # res.append((i - 1) // 2)
-        res.append(i)
+        res.append((i - 1) // 2)
         (k, l) = dec_pair_alt(j)
         res.append(k)
         res.append(l)
@@ -110,20 +109,8 @@ def print_rm(rm):
                   + ", L" + str(instr[2]))
 
 
-p1 = (0, 0)
-p2 = (1, 2)
-
-r1 = enc_pair(*p1)
-r2 = enc_pair_alt(*p2)
-
-print(r1)
-print(r2)
-
 d1 = dec_list(2 ** 94 * 16395)
-print(d1)
+rm = dec_rm(2 ** 94 * 16395)
 
-print(dec_pair(8197))
-
-print(enc_list([94, 0, 1, 10]))
-
-print_rm([[1, 3, 1], [0], [0, 0], [1, 0, 1]])
+print(rm)
+print_rm(rm)
